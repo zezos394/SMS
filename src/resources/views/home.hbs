@@ -1,0 +1,148 @@
+<div id="slider">
+</div>
+{{!-- Back to top button --}}
+            <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fas fa-chevron-up"></i></button>
+            <script>
+                //Get the button
+                var mybutton = document.getElementById("myBtn");
+
+                // When the user scrolls down 20px from the top of the document, show the button
+                window.onscroll = function() {scrollFunction()};
+
+                function scrollFunction() {
+                    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                        mybutton.style.display = "block";
+                    } else {
+                        mybutton.style.display = "none";
+                    }
+                }
+
+            // When the user clicks on the button, scroll to the top of the document
+                function topFunction() {
+                    document.body.scrollTop = 0;
+                    document.documentElement.scrollTop = 0;
+                }
+            </script>
+<div id="content">
+            <!-- About section-->
+            <div id="band" class="content-section">
+                <h2 class="section-heading">Stadium Managing System</h2>
+                <p class="section-subheading">SMS</p>
+                <p class="about-text">
+                    Đây là hệ thống quản lý, cho thuê sân bóng được phát triển thực hiện bởi nhóm sinh viên Đại học Bách Khoa Hà Nội.
+                    Hệ thống là một công cụ hỗ trợ hướng tới các chủ sân bãi vừa và nhỏ hoạt động trong lĩnh vực cho thuê sân bóng:
+                    Giúp người dùng quản lý sân bóng của mình được chặt chẽ và chính xác hơn; 
+                    Tránh được các trường hợp đặt sân trùng giờ hoặc để sân trống khi không kiểm soát được giờ đặt sân;
+                    Đồng thời giúp quản lý các hoạt động bên lề khác như: mua/bán sản phẩm trong sân, quản lý khách hàng.
+                </p>
+            </div>
+            <!-- Book section-->
+            <div id="book" class="book-section">
+                <div class="content-section">
+                    <h2 class="section-heading text-white">Đặt Sân</h2>
+                    <p class="section-subheading text-white">Bạn muốn đặt sân? Chúng tôi ở đây</p>
+                    <!--Stadium list-->
+                    <ul class="stadium-list">
+                        <li>Tháng 12 <span class="sold-out">!!!</span></li>
+                        <li>Tháng 1 <span class="sold-out">!!!</span></li>
+                        <li>Tháng 2 
+                                {{#each courses}}
+                                    <a class="quantity" href="/courses/{{this.slug}}" style="text-decoration: none;">
+                                    
+                                        {{this.name}}
+                                        
+                                    </a>
+                                {{/each}}
+                                
+                                    
+                        </li>
+                    </ul> 
+                    <!-- Slides -->
+                    <h2 class="slide-center">Một vài sân bóng của chúng tôi</h2>
+
+                    <div class="slide-content slide-display-container">
+                            <div class="mt-4">
+                                <div class="row">
+                                    {{#each courses}}
+                                    <div class="col-sm-12 col-lg-12" style="margin-top:-24px;">
+                                        <div class="card mySlides" style="margin-top: 16px;>
+                                            <a href="/courses/{{this.slug}}">
+                                                <img src="{{this.image}}" class="card-img-top" alt="{{this.name}}">
+                                            </a>
+                                            <div class="card-body">
+                                                <a href="/courses/{{this.slug}}" style="text-decoration: none; text-transform: uppercase;" >
+                                                    <h5 class="card-title" >{{this.name}}</h5>
+                                                </a>
+                                                <p class="card-text">{{this.description}}</p>
+                                                <a href="/courses/{{this.slug}}/book" class="btn btn-primary" style="left: 44%; position: relative;">Đặt ngay</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{/each}}
+                                </div>
+                            </div>
+                            <button class="slide-button slide-display-right" onclick="plusDivs(1)">NEXT</button>
+                    </div>
+
+                    <script>
+                        var slideIndex = 1;
+                        showDivs(slideIndex);
+
+                        function plusDivs(n) {
+                            showDivs(slideIndex += n);
+                        }
+
+                        function showDivs(n) {
+                            var i;
+                            var x = document.getElementsByClassName("mySlides");
+                            if (n > x.length) {slideIndex = 1}
+                            if (n < 1) {slideIndex = x.length}
+                            for (i = 0; i < x.length; i++) {
+                                x[i].style.display = "none";  
+                            }
+                            x[slideIndex-1].style.display = "inline-block";  
+                        }
+                    </script>
+                </div>   
+            </div>
+
+        <!-- Contact section-->
+            <div id="contact" class="content-section">
+                <h2 class="section-heading">Liên hệ</h2>
+                <div class="row contact-row">
+                    <p class="col col-two contact-subheading section-subheading">Mọi đóng góp ý kiến xin vui lòng gửi đến</p>
+                    {{!-- <p class="col col-two contact-subheading section-subheading">Hãy để thông tin liên hệ của bạn tại đây</p> --}}
+                </div>
+                <div class="row contact-content">
+                    <div class="col col-two contact-info">
+                        <p><i class="fas fa-map-marker-alt"></i> Số 1 Đại Cồ Việt, Hai Bà Trưng, Hà Nội</p>
+                        <p><i class="fas fa-phone"></i> 024 3869 4242</p>
+                        <p><i class="fas fa-envelope"></i> zezos394@gmail.com</p>
+                    </div>
+                    <div class="col col-two contact-form">
+                        <form action="mailto:zezos394@gmail.com" method="POST" enctype="multipart/form-data" name="EmailForm">
+                            {{!-- <div class="row">
+                                <div class="col col-two">
+                                    <input type="text" name="" placeholder="Tên" required id="" class="form-control">
+                                </div>
+                                <div class="col col-two">
+                                    <input type="Email" name="" placeholder="Email" required id="" class="form-control">
+                                </div> 
+                            </div> --}}
+                            {{!-- <div class="row">
+                                <div class="col col-one">
+                                    <input type="text" placeholder="Bạn muốn nhắn gì với chúng tôi?" required class="form-control">
+                                </div>
+                            </div> --}}
+                            
+                            <input class="submit-button" type="submit" value="GỬI PHẢN HỒI">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        <!--Map section-->
+            {{!-- <div class="map-section">
+                <img src="https://is5-ssl.mzstatic.com/image/thumb/Purple126/v4/41/4a/49/414a4954-121d-3134-821c-4e0312e1ab52/logo_maps_ios_color-0-0-1x_U007emarketing-0-0-0-6-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/1200x630wa.png" alt="Map" class="map-pic"> 
+            </div> --}}
+        
+</div>

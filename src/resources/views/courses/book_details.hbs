@@ -1,0 +1,274 @@
+<div class="mt-4">
+    <div class="row">
+        <div class="col-lg-3">
+            <img class="stadium-img" src="{{course.image}}" alt="Hình ảnh của sân {{course.name}}">
+            <div class="mt-2" style="text-align: center;">
+              <i class="">ID sân:</i>
+              <i class="mt-4" style="color: blue;">{{course._id}} </i> <br>
+              <h4 class="">Giá thuê: {{course.price}} (VNĐ/h)</h4>
+      
+            </div>
+        </div>
+
+        <div class="col-lg-9">
+                <!-- form san -->
+                <form action="/matches/store" class="form_san" method="POST">
+                    <h1>Đặt sân {{course.name}}</h1>
+                    <div class="phone">
+                        <input type="text" class="phone-input" placeholder=" " required id="" id="inputStaId" name="sta_id">
+                        <label for="" class="phone-label" >Nhập lại ID sân</label>
+                    </div>
+                    <div class="teams">
+                        <div class="team1">
+                            <input type="text" class="team1-input" placeholder=" " required id="" id="inputTeamName" name="team1">
+                            <label for="" class="team1-label" >Tên đội</label>
+                        </div>
+                        <h3 class="vs">vs.</h3>
+                        <div class="team2">
+                            <input type="text" class="team2-input" placeholder=" " required id="" id="inputTeamName" name="team2">
+                            <label for="" class="team2-label" required id=""></label>
+                        </div>
+                    </div>
+                    <div class="phone">
+                        <input type="text" class="phone-input" placeholder=" " required id="" id="inputBookerName" name="booker">
+                        <label for="" class="phone-label" >Tên người đặt</label>
+                    </div>
+                    <div class="phone">
+                        <input type="Email" class="phone-input" placeholder=" " required id="" id="inputBookerEmailName" name="booker_email">
+                        <label for="" class="phone-label">Email</label>
+                    </div>
+                    <div class="phone">
+                        <input type="tel" class="phone-input" placeholder=" " required id="" id="inputPhone" name="phone">
+                        <label for="" class="phone-label">Số điện thoại</label>
+                    </div>
+                    <div class="date">
+                        <input type="date" class="date-input" placeholder=" " name="date">
+                        <label for="" class="date-label">Ngày/Tháng/Năm</label>
+                    </div> 
+                    <div class="phone">
+                        <input type="text" class="phone-input" placeholder=" " required id="" id="inputTime" name="time_group">
+                        <label for="" class="phone-label" >Chọn khung giờ</label>
+                    </div> 
+                    <br>
+                        <i> [Quy định các khung giờ] 1: 17h-18h30 ; 2: 18h30-20h ; 3: 20h-21h30 ; 4: 21h30-23h</i> <br>
+                        <i class="checkbox">Hãy chắc chắn thông tin trên là chính xác nhé!!</i><br>
+                    
+                    <br>
+                    <input type="submit" class="submit" value="Đăng ký">
+                </form>
+        </div>
+    </div>
+</div>
+
+<style>
+
+.stadium-img{
+  margin-top: 50px;
+  margin-left: 12px;
+}
+.form_san {
+  margin-top: 32px;
+  padding: 10px;
+  background-color: white;
+  border-radius: 10px solid white;
+  float: right;
+}
+
+h1 {
+  text-align: center;
+  margin-right: 12px;
+  margin-left: -12px;
+}
+
+/* css tên đội 1 */
+.team1-input {
+  padding: 20px;
+  border-radius: 4px;
+  width: 200px;
+  height: 50px;
+  padding: 0 20px;
+  transition: 0.25 ease;
+}
+
+.team1-input:focus {
+  border-color: green;
+}
+
+.team1 {
+  position: relative;
+  padding: 20px 0;
+}
+
+.team1-label {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 20px;
+  user-select: none;
+  color: #999;
+  transition: 0.25s ease;
+}
+
+.team1-input:not(:placeholder-shown) + .team1-label,
+.team1-input:focus + .team1-label {
+  top: 20px;
+  padding: 6px;
+  background-color: white;
+  display: inline-block;
+  color: green;
+}
+/* css tên đội 2 */
+.team2-input {
+  padding: 20px;
+  border-radius: 4px;
+  width: 200px;
+  height: 50px;
+  padding: 0 20px;
+  margin-left: 30px;
+  transition: 0.25 ease;
+}
+
+.team2-input:focus {
+  border-color: green;
+}
+
+.team2 {
+  position: relative;
+  padding: 20px 0;
+}
+
+{{!-- .team2-label {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 50px;
+  user-select: none;
+  color: #999;
+  transition: 0.25s ease;
+} --}}
+
+.team2-input:not(:placeholder-shown) + .fc2label,
+.team2-input:focus + .team2-label {
+  top: 20px;
+  padding: 6px;
+  background-color: white;
+  display: inline-block;
+  color: green;
+}
+
+/* đặt 2 đội trên 1 hàng */
+.teams {
+  display: flex;
+}
+
+h3 {
+  padding-left: 20px;
+  padding-top: 20px;
+}
+
+/* css số điện thoại */
+.phone-input {
+  padding: 20px;
+  border-radius: 4px;
+  width: 200px;
+  height: 50px;
+  padding: 0 20px;
+  margin-left: 160px;
+  transition: 0.25 ease;
+}
+
+.phone-input:focus {
+  border-color: green;
+}
+
+.phone {
+  position: relative;
+  padding: 20px 0;
+}
+
+.phone-label {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 180px;
+  user-select: none;
+  color: #999;
+  transition: 0.25s ease;
+}
+
+.phone-input:not(:placeholder-shown) + .phone-label,
+.phone-input:focus + .phone-label {
+  top: 20px;
+  padding: 6px;
+  background-color: white;
+  display: inline-block;
+  /* color: green; */
+}
+
+/* css date */
+.date-input {
+  padding: 20px;
+  border-radius: 4px;
+  width: 200px;
+  height: 50px;
+  padding: 0 20px;
+  margin-left: 160px;
+  transition: 0.25 ease;
+}
+
+.date:focus {
+  border-color: green;
+}
+
+.date {
+  position: relative;
+  padding: 20px 0;
+}
+
+.date-label {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 180px;
+  user-select: none;
+  color: #999;
+  top: 20px;
+  background-color: white;
+  padding: 6px;
+}
+
+/* css time */
+.time-select {
+  padding: 20px;
+  border-radius: 4px;
+  width: 200px;
+  height: 50px;
+  padding: 0 20px;
+  margin-left: 160px;
+  transition: 0.25 ease;
+}
+
+.time-select:focus {
+  border-color: green;
+}
+
+option {
+  font-size: 15px;
+}
+
+select {
+  font-size: 15px;
+}
+
+.checkbox {
+  padding-left: 130px;
+}
+
+.submit {
+  margin-left: 40%;
+  padding: 13px 26px;
+  font-size: 20px;
+}
+
+
+</style>
